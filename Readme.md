@@ -1,3 +1,4 @@
+VIETNAMESE VER. (ENGLISH VER. BELOW)
 # Phân Tích Dữ Liệu Giao Dịch và Hành Vi Khách Hàng QVI
 
 ## Giới Thiệu
@@ -84,3 +85,93 @@ Dự án được cấu trúc thành các phần chính sau:
 * Mở rộng phân tích để bao gồm các biến khách hàng khác.
 * Áp dụng các kỹ thuật phân cụm nâng cao hơn.
 * Xây dựng mô hình dự đoán hành vi khách hàng.
+
+
+
+ENGLISH VER.
+# QVI Transaction Data and Customer Behavior Analysis
+
+## Introduction
+
+This project is an in-depth data analysis of customer purchasing behavior and transaction data from QVI (Quantium Virtual Internship). The main goal is to explore consumption patterns, segment customers based on `LIFESTAGE` and `PREMIUM_CUSTOMER` categories, and subsequently provide business recommendations.
+
+The project encompasses steps from raw data preprocessing, cleaning, feature engineering to exploratory analysis and data merging, culminating in a detailed analysis of potential customer segments.
+
+## Datasets
+
+The project utilizes two primary datasets:
+
+1.  **`QVI_transaction_data.xlsx`**: Contains detailed information about purchases, including transaction date, product name, quantity, and total sales.
+2.  **`QVI_purchase_behaviour.csv`**: Contains information about customer purchasing behavior, including `LIFESTAGE` and `PREMIUM_CUSTOMER` for each loyalty card number.
+
+## Key Analysis Steps
+
+The project is structured into the following main sections:
+
+### I. Python Environment Setup and Data Loading
+
+* Imports necessary libraries: `pandas`, `numpy`, `matplotlib`, `seaborn`, `scipy.stats`, `re`.
+* Loads transaction and customer data into DataFrames.
+
+### II. Transaction Data: Preprocessing and Exploratory Analysis
+
+* **`DATE` Column Conversion**: Converts the date format from numerical to standard datetime.
+* **`PROD_NAME` Analysis**:
+    * Explores unique product names.
+    * Removes irrelevant products (e.g., "Salsa").
+* **Summary Statistics & Outlier Management**:
+    * Checks initial descriptive statistics.
+    * Identifies and handles outlier transactions (e.g., `PROD_QTY` = 200).
+    * Removes customers with anomalous purchasing behavior.
+* **Transaction Trends Over Time**:
+    * Counts the number of transactions by day.
+    * Identifies missing data dates (e.g., Christmas).
+    * Visualizes transaction volume to identify temporal trends.
+
+### III. Feature Engineering from Transaction Data
+
+* **`PACK_SIZE` Extraction**: Extracts the pack size from product names for preference analysis.
+* **`BRAND` Extraction and Cleaning**: Extracts brand names from product names and standardizes them for consistent analysis.
+
+### IV. Customer Data: Exploration
+
+* Checks the structure and summary statistics of the customer data.
+* Analyzes the distribution of key categorical variables: `LIFESTAGE` and `PREMIUM_CUSTOMER`.
+
+### V. Merging Transaction and Customer Data
+
+* Combines transaction and customer data based on `LYLTY_CARD_NBR` (loyalty card number) to create a comprehensive dataset for analysis.
+* Verifies data integrity after merging.
+
+### VI. Customer Segment Analysis
+
+* **Total Sales**: Calculates total sales for each customer segment (`LIFESTAGE` x `PREMIUM_CUSTOMER`).
+* **Number of Customers**: Counts unique customers within each segment.
+* **Average Units Per Customer**: Analyzes the average number of products purchased by each customer within each segment.
+* **Average Price Per Unit**: Calculates the average price per unit of products purchased by different segments to understand pricing behavior.
+* **Statistical Significance Test (T-test)**: Performs a t-test to compare statistically significant differences in average price per unit between specific segments (e.g., Young/Midage Singles/Couples - Mainstream vs. Budget/Premium).
+
+### VII. Deep Dive: 'Mainstream, Young Singles/Couples' Segment
+
+* Delves into a target customer segment to gain deeper insights into their preferences.
+* **Brand Affinity Analysis**: Compares the proportion of different brands purchased by the target segment versus other segments.
+* **Pack Size Preference Analysis**: Compares pack size preferences of the target segment.
+* Identifies specific products (brands and pack sizes) favored by this segment.
+
+## Key Findings and Recommendations
+
+*Summarize your key findings from the analysis here. For example:*
+* The **"Young Singles/Couples - Mainstream"** and **"Midage Singles/Couples - Mainstream"** segments are among the highest spenders and represent a significant customer base.
+* There is statistical evidence suggesting that **"Mainstream"** customers within the Young/Midage Singles/Couples group tend to pay a significantly higher price per unit compared to their Budget/Premium counterparts in the same lifestage.
+* The **"Mainstream, Young Singles/Couples"** segment shows higher affinity for **270g** pack sizes and brands like **Grain Waves** and **Tyrrells**.
+
+*Based on these findings, recommendations could include:*
+* Focus marketing strategies on high-value and high-volume customer segments.
+* Consider special promotions for 270g pack sizes and favored brands by the "Mainstream, Young Singles/Couples" segment.
+* Continuously monitor purchasing behavior to adapt product and pricing strategies.
+
+## Future Enhancements
+
+* Expand analysis to include other customer variables.
+* Apply more advanced clustering techniques.
+* Build predictive models for customer behavior.
